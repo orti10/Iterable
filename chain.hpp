@@ -20,7 +20,7 @@ namespace itertools{
             iterator(T1 *iterator1,T2 *iterator2):it1(iterator1),it2(iterator2){}
 
             T1 &operator*()const{
-                return *it;
+                return *it1;
             }
             iterator &operator++()const{
                 (*it)++;
