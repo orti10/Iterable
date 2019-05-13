@@ -2,8 +2,6 @@
 
 
 namespace itertools{
-using namespace std;
-
     template<typename T>
 
     class range
@@ -60,8 +58,4 @@ using namespace std;
     };   
         
 }
-template<typename T1,typename T2>
-ostream& operator <<(ostream& os,const itertools::pair<T1,T2>& Mypair){
-    os<<Mypair.t1<<","<<Mypair.t2;
-    return os;
-}
+

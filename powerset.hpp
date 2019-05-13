@@ -4,7 +4,6 @@
 // #include <iostream>
 
 namespace itertools{
-	using namespace std;
 	template<typename T>
 	class powerset{
 
@@ -26,7 +25,7 @@ namespace itertools{
 					
 
 				auto operator*() {
-					string str ="{}";
+					std::string str ="{}";
                     return str;
 				}
 

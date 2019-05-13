@@ -1,10 +1,8 @@
 #pragma once
-//#include "range.hpp"
 #include "zip.hpp"
 #include <iostream>
 
 namespace itertools{
-	using namespace std;
 	template<typename T1, typename T2>
 	class product{
 
@@ -34,10 +32,10 @@ namespace itertools{
 					it1_begin(it1_begin), it1_end(it1_end),it2_begin(it2_begin), it2_end(it2_end){}
 
 				auto operator*() {
-					return pair(*(it1_begin), *(it2_begin));
+					return std::pair(*(it1_begin), *(it2_begin));
 				}
                 auto operator-> ()const{
-                return pair(&(it1_begin),&(it2_begin));
+                return std::pair(&(it1_begin),&(it2_begin));
                 }
 
 				// ++i;

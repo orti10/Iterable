@@ -1,24 +1,8 @@
 #pragma once
-//#include "range.hpp"
 #include <iostream>
-
 namespace itertools{
-   using namespace std;
 
-    template<typename T1,typename T2>
-
-    class pair{
-       private:
-        T1 t1;
-        T2 t2;
-        public:
-        pair(T1 _t1,T2 _t2):t1(_t1),t2(_t2){}
-
-        template<typename C1,typename C2>
-        friend ostream& operator<<(ostream& os,const pair<C1,C2> Mypair);
-
-    };
-
+    
     template<typename T1,typename T2>
     class zip{
         private:
@@ -76,9 +60,24 @@ namespace itertools{
             return zip::iterator(z_begin.end(),z_begin.end(),z_end.end());
          }
     };
-}
 // template<typename T1,typename T2>
-// ostream& operator <<(ostream& os,const itertools::pair<T1,T2>& Mypair){
-//     os<<Mypair.t1<<","<<Mypair.t2;
-//     return os;
-// }
+
+//     class pair {
+//        private:
+//         T1 t1;
+//         T2 t2;
+//         public:
+//         pair(T1 _t1,T2 _t2):t1(_t1),t2(_t2){}
+
+//         template<typename C1,typename C2>
+//         friend std::ostream& operator <<(std::ostream& os,const pair<C1,C2> mypair);
+
+//     };
+
+}
+
+template<typename C1,typename C2>
+ostream& operator<< (ostream& os,const pair<C1,C2>& mypair){
+    os << mypair.first << "," << mypair.second;
+    return os;
+}
