@@ -1,50 +1,62 @@
 #pragma once
-#include "range.hpp"
+//#include "range.hpp"
+// #include "zip.hpp"
+// #include <iostream>
 
 namespace itertools{
-    template<typename T1,typename T2>
+	using namespace std;
+	template<typename T>
+	class powerset{
 
-    class powerset{
+	private:
+		T pow_it;
+		
 
-        public:
-        T1 pow_begin;
-        T2 pow_end;
+	public:
 
-         powerset<T1,T2>(T1 begins, T2 ends){}
+		powerset(const T its):pow_it(its) {}
 
-        class iterator{
-            public:
-            T1 *it;
+		class iterator {
 
-            iterator(T1 *iterator=nullptr){
-                this->it=iterator;
-            }
+			private:
+				typename T::iterator _it;
 
-            T1 &operator*()const{
-                return *it;
+			public:
+				iterator(typename T::iterator it):_it(it){}
+					
+
+				auto operator*() {
+					string str ="{}";
+                    return str;
+				}
+
+				// ++i;
+				iterator& operator++() {
+                    _it++;
+					return *this;
+				}
+
+				// i++;
+				const iterator operator++(int) {
+					iterator temp =*this;
+                    ++*this;
+                    return temp;
+				}
+
+				 bool operator==(const iterator& other)const{
+                return (_it==other._it); 
             }
-            iterator &operator++()const{
-                (*it)++;
-                return *this;
-            }
-            const iterator &operator ++(int){
-                iterator temp =*this;
-                ++*(this);
-                return temp;
-            }
-            bool operator==(iterator other)const{
-                return *it==*other.it; 
-            }
-            bool operator!=(iterator other)const{
-                return *it!=*other.it; 
-            }
+            bool operator!=(const iterator& other)const{
+                return (_it!=other._it);
+                }   
         };
 
-        iterator begin(){
-            return powerset<T1,T2>::iterator{&pow_begin};
+        typename powerset::iterator begin(){
+            return powerset::iterator(pow_it.begin());
         }
-        iterator end(){
-            return powerset<T1,T2>::iterator{&pow_end};
+        typename powerset::iterator end(){
+            return powerset::iterator(pow_it.end());
          }
-    };
-};
+
+	}; 
+}

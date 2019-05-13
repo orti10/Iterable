@@ -17,13 +17,13 @@ using namespace std;
 #include "powerset.hpp"
 using namespace itertools;
 
-template<typename Iterable>
-string iterable_to_string(const Iterable& iterable) {
-	ostringstream ostr;
-	for (auto i: iterable)
-		ostr << i << ",";
-	return ostr.str();
-}
+// template<typename Iterable>
+// string iterable_to_string(const Iterable& iterable) {
+// 	ostringstream ostr;
+// 	for (auto i: iterable)
+// 		ostr << i << ",";
+// 	return ostr.str();
+// }
 
 int main() {
 	cout << endl << endl << "Range of ints: " << endl;

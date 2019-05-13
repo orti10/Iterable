@@ -1,55 +1,63 @@
 #pragma once
 
-#include <iostream>
-
 
 namespace itertools{
+using namespace std;
 
     template<typename T>
 
     class range
     {
     private:
-        /* data */
-    public:
         T r_begin,r_end;
+    public:
 
-        range<T>(T begins,T ends):r_begin(begins),r_end(ends){}
+        range(const T begins,const T ends):r_begin(begins),r_end(ends){}
+       // range<T>(const range& ran):r_begin(ran.r_begin),r_end(ran.r_end){}
 
         class iterator{
+            private:
+            T r_it;
 
             public:
-            T it;
 
-            iterator(T *iterator):it(iterator){}
-                
+            iterator(T iterator):r_it(iterator){}
+            //iterator(const iterator &other):it(other.it){}
 
-            T &operator*()const{
-                return *it;
+            T& operator*()const{
+                return r_it;
             }
-            iterator &operator++()const{
-                (*it)++;
+            //++i prefix
+            iterator &operator++(){
+                r_it=r_it+1;
                 return *this;
             }
-            const iterator &operator ++(int){
-                iterator temp =*this;
-                ++*(this);
+            //i++ postfix
+            const iterator operator ++(int){
+                 iterator temp =*this;
+                ++*this;
                 return temp;
             }
-            bool operator==(iterator other)const{
-                return *it==*other.it; 
+            bool operator==(const iterator& other)const{
+                return r_it==other.r_it; 
             }
-            bool operator!=(iterator other)const{
-                return *it!=*other.it; 
+            bool operator!=(const iterator& other)const{
+                return r_it!=other.r_it; 
             }
+            T* operator-> ()const{
+                return &(r_it);
+            }
+         //   friend ostream& operator<<(ostream& os,const iterator& it);
 
         };
 
         iterator begin(){
-            return range<T>::iterator{&r_begin};
+         return iterator(r_begin);
         }
         iterator end(){
-            return range<T>::iterator{&r_end};
+            return iterator(r_end);
         }
-    };    
-};
+    };   
+    
+     
+}
