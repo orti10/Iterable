@@ -17,13 +17,13 @@ using namespace std;
 #include "powerset.hpp"
 using namespace itertools;
 
-// template<typename Iterable>
-// string iterable_to_string(const Iterable& iterable) {
-// 	ostringstream ostr;
-// 	for (auto i: iterable)
-// 		ostr << i << ",";
-// 	return ostr.str();
-// }
+template<typename Iterable>
+string iterable_to_string(const Iterable& iterable) {
+	ostringstream ostr;
+	for (auto i: iterable)
+		ostr << i << ",";
+	return ostr.str();
+}
 
 int main() {
 	cout << endl << endl << "Range of ints: " << endl;
@@ -49,7 +49,7 @@ int main() {
 	cout << endl << endl << "Chain of a range and a string: " << endl;
 	for (char i: chain(range('a','e'), string("hello")))
 		cout << i;    // abcdhello
-
+		
 	cout << endl << endl << "Zip a range of ints and a string (must be of the same size)" << endl;
 	for (auto pair: zip(range(1,6), string("hello")))
 		cout << pair << "  ";    // 1,h  2,e  3,l  4,l  5,o

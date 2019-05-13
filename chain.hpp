@@ -1,5 +1,5 @@
 #pragma once
-//#include "range.hpp"
+#include "range.hpp"
 
 namespace itertools{
     template<typename T1,typename T2>
@@ -19,7 +19,7 @@ namespace itertools{
             typename T1::iterator it1_begin;
             typename T1::iterator it1_end;
             typename T2::iterator it2_begin;
-            bool checkIndicator()const{
+            bool checkIndicator(){
                 if(it1_begin!=it1_end) return *(it1_begin);
                 return *(it2_begin);
             }
@@ -32,9 +32,9 @@ namespace itertools{
             auto operator*(){
                 
                 if(checkIndicator()){
-                    return &(it1_begin);
+                    return *(it1_begin);
                 }
-                return &(it2_begin);
+                return *(it2_begin);
             }
             //++i
             iterator &operator++(){

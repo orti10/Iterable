@@ -24,7 +24,7 @@ using namespace std;
             iterator(T iterator):r_it(iterator){}
             //iterator(const iterator &other):it(other.it){}
 
-            T& operator*()const{
+            T& operator*(){
                 return r_it;
             }
             //++i prefix
@@ -58,6 +58,10 @@ using namespace std;
             return iterator(r_end);
         }
     };   
-    
-     
+        
+}
+template<typename T1,typename T2>
+ostream& operator <<(ostream& os,const itertools::pair<T1,T2>& Mypair){
+    os<<Mypair.t1<<","<<Mypair.t2;
+    return os;
 }

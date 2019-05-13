@@ -34,10 +34,10 @@ namespace itertools{
 					it1_begin(it1_begin), it1_end(it1_end),it2_begin(it2_begin), it2_end(it2_end){}
 
 				auto operator*() {
-					return coupleContainer(*(it1_begin), *(it2_begin));
+					return pair(*(it1_begin), *(it2_begin));
 				}
                 auto operator-> ()const{
-                return coupleContainer(&(it1_begin),&(it2_begin));
+                return pair(&(it1_begin),&(it2_begin));
                 }
 
 				// ++i;

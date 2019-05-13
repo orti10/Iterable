@@ -7,15 +7,15 @@ namespace itertools{
 
     template<typename T1,typename T2>
 
-    class coupleContainer{
+    class pair{
        private:
         T1 t1;
         T2 t2;
         public:
-        coupleContainer(T1 _t1,T2 _t2):t1(_t1),t2(_t2){}
+        pair(T1 _t1,T2 _t2):t1(_t1),t2(_t2){}
 
         template<typename C1,typename C2>
-        friend ostream& operator<<(ostream& os,const coupleContainer<C1,C2> MycoupleContainer);
+        friend ostream& operator<<(ostream& os,const pair<C1,C2> Mypair);
 
     };
 
@@ -42,10 +42,10 @@ namespace itertools{
             it1_begin(it1begin),it1_end(it1end),it2_begin(it2begin){}
 
             auto operator*(){
-                return coupleContainer(*(it1_begin),*(it2_begin));
+                return pair(*(it1_begin),*(it2_begin));
             }
             auto operator-> ()const{
-                return coupleContainer(&(it1_begin),&(it2_begin));
+                return pair(&(it1_begin),&(it2_begin));
             }
             //++i
             iterator &operator++(){
@@ -77,8 +77,8 @@ namespace itertools{
          }
     };
 }
-template<typename T1,typename T2>
-ostream& operator<<(ostream& os,const itertools::coupleContainer<T1,T2>& MycoupleContainer){
-    os<<MycoupleContainer.t1<<","<<MycoupleContainer.t2;
-    return os;
-}
+// template<typename T1,typename T2>
+// ostream& operator <<(ostream& os,const itertools::pair<T1,T2>& Mypair){
+//     os<<Mypair.t1<<","<<Mypair.t2;
+//     return os;
+// }
