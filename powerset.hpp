@@ -45,7 +45,7 @@ namespace itertools{
 				 bool operator==(const iterator& other)const{
                 return (_it==other._it); 
             }
-            bool operator!=(const iterator& other)const{
+            	bool operator!=(const iterator& other)const{
                 return (_it!=other._it);
                 }   
         };
