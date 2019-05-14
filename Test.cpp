@@ -1,6 +1,10 @@
-/*
-TEST BY ORTAL AND TOMER 2019
-*/
+
+/**
+ * A test program for itertools.
+ * 
+ * TEST BY ORTAL AND TOMER 
+ * @since  2019-05
+ */
 
 #include <iostream>
 using namespace std;
