@@ -4,8 +4,8 @@ Code by Ortal Hanoch and Tomer Maabari 	:zap:
 
 # A) class range:
 Represent a range of objects, for example:
-range(a,c) is the range from a (include a) to c (not include c) = {a,b}
-range(1,4) is the range from 1 (include 1) to 4 (not include 4) = {1,2,3}
+* range(a,c) is the range from a (include a) to c (not include c) = {a,b}
+* range(1,4) is the range from 1 (include 1) to 4 (not include 4) = {1,2,3}
 
 # B) class chain:
 Represent a chain of two containers, for example:
