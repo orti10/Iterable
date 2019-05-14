@@ -20,8 +20,8 @@ namespace itertools{
             typename T1::iterator it1_end;
             typename T2::iterator it2_begin;
             bool checkIndicator(){
-                if(it1_begin!=it1_end) return *(it1_begin);
-                return *(it2_begin);
+                if(it1_begin==it1_end) return true;
+                return false;
             }
             public:
             
@@ -32,18 +32,18 @@ namespace itertools{
             auto operator*(){
                 
                 if(checkIndicator()==true){
-                    return *(it1_begin);
+                    return *(it2_begin);
                 }
-                return *(it2_begin);
+                return *(it1_begin);
             }
             //++i
             iterator &operator++(){
                 if(checkIndicator()==true){
-                    (it1_begin)++;
+                    (it2_begin)++;
                     return *this;
                 }
                 
-                    (it2_begin)++;
+                    (it1_begin)++;
                     return *this;
             }
             //i++
@@ -62,10 +62,10 @@ namespace itertools{
         };
 
         typename chain::iterator begin(){
-            return chain::iterator(c_begin.begin(),c_begin.end(),c_end.begin());
+            return chain::iterator{c_begin.begin(),c_begin.end(),c_end.begin()};
         }
         typename chain::iterator end(){
-            return chain::iterator(c_begin.end(),c_begin.end(),c_end.end());
+            return chain::iterator{c_begin.end(),c_begin.end(),c_end.end()};
          }
     };
 }

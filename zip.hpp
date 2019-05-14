@@ -54,10 +54,10 @@ namespace itertools{
         };
 
         typename zip::iterator begin(){
-            return zip::iterator(z_begin.begin(),z_begin.end(),z_end.begin());
+            return zip::iterator{z_begin.begin(),z_begin.end(),z_end.begin()};
         }
         typename zip::iterator end(){
-            return zip::iterator(z_begin.end(),z_begin.end(),z_end.end());
+            return zip::iterator{z_begin.end(),z_begin.end(),z_end.end()};
          }
     };
 // template<typename T1,typename T2>

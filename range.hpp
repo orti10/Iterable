@@ -50,10 +50,10 @@ namespace itertools{
         };
 
         iterator begin(){
-         return iterator(r_begin);
+         return iterator{r_begin};
         }
         iterator end(){
-            return iterator(r_end);
+            return iterator{r_end};
         }
     };   
         

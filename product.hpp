@@ -65,10 +65,10 @@ namespace itertools{
         };
 
         typename product::iterator begin(){
-            return product::iterator(pro_begin.begin(),pro_begin.end(),pro_end.begin(),pro_end.end());
+            return product::iterator{pro_begin.begin(),pro_begin.end(),pro_end.begin(),pro_end.end()};
         }
         typename product::iterator end(){
-            return product::iterator(pro_begin.end(),pro_begin.end(),pro_end.end(),pro_end.end());
+            return product::iterator{pro_begin.end(),pro_begin.end(),pro_end.end(),pro_end.end()};
          }
 
 	}; 
