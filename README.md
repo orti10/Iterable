@@ -1,6 +1,6 @@
 # Iterable
 
-Code by Ortal Hanoch and Tomer Maabari 	:zap:
+Code by Ortal Hanoch, Tomer Maabari and Nitzan Kravzov	:zap:
 
 # A) class range:
 Represent a range of objects, for example:
