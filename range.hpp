@@ -1,5 +1,5 @@
 #pragma once
-#include <iostream>
+//#include <iostream>
 
 namespace itertools{
     
@@ -23,18 +23,22 @@ namespace itertools{
 
         class iterator{
             private:
-            T r_it;
+            T it_it;
+            T it_current;
 
             public:
-            iterator(T iter):r_it(iter){}
+            iterator(T iter){
+                it_current=iter;
+                it_it=iter;
+            }
             //iterator(const iterator &other):it(other.it){}
 
             T operator*()const{
-                return r_it;
+                return  it_current;
             }
             //++i prefix
-            iterator &operator++(){
-                r_it=r_it+1;
+            iterator operator++(){
+                ++it_current;
                 return *this;
             }
             //i++ postfix
@@ -43,13 +47,16 @@ namespace itertools{
                 *this++;
                 return temp;
             }
+            bool operator==(const iterator& other){
+                return it_current==other.it_current;
+            }
             bool operator!=(const iterator& other){
-                return r_it!=other.r_it; 
+                return it_current!=other.it_current; 
             }
             
-            T* operator-> ()const{
-                return &(r_it);
-            }
+            // T* operator-> ()const{
+            //     return &(r_it);
+            // }
          //   friend ostream& operator<<(ostream& os,const iterator& it);
 
         };//end of iterator class

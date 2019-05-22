@@ -1,6 +1,6 @@
 #pragma once
-#include <iterator>
-#include<iostream>
+// #include <iterator>
+// #include<iostream>
 
 namespace itertools{
     template<typename T1,typename T2>
@@ -71,7 +71,7 @@ namespace itertools{
         }
         iterator end() const{
             iterator it{c_begin,c_end};
-            for (size_t i = 0; i < c_begin.length()+c_end.length(); i++)
+            for (size_t i = 0; i < c_begin.length()+c_end.length()+1; i++)
             {
                 ++it;
             }

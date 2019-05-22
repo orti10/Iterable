@@ -2,6 +2,8 @@
 #include <set> // for set operations
 #include <cmath>
 #include <iostream>
+#include <iterator>
+
 using namespace std;
 
 namespace itertools {
@@ -15,12 +17,6 @@ namespace itertools {
     public:
     powerset(T start) : iterable(start) {} 
 
-    auto begin() { 
-    return iterator<decltype(iterable.begin())> (iterable.begin(), iterable.end()); 
-    } 
-    auto end()  { 
-    return iterator<decltype(iterable.begin())>(iterable.end(), iterable.end());
-    }    
  
     template <class C>
         class iterator {
@@ -76,7 +72,18 @@ namespace itertools {
          
         }; // END OF CLASS ITERATOR
 
-
+        iterator begin() const{
+            return iterator{iterable};
+        }
+        iterator end() const{
+            iterator it{iterable};
+            for (size_t i = 0; i < iterable.length(); i++)
+            {
+                ++it;
+            }
+            return it;
+            
+           } //return it
     };
     
 template <typename D>

@@ -1,5 +1,5 @@
 #pragma once
-#include "iostream"
+#include <sstream>
 
 namespace itertools{
 
@@ -12,6 +12,7 @@ namespace itertools{
         
         public:
         zip(T1 begins,T2 ends):z_begin(begins),z_end(ends){}
+        
         int length () const{
             return z_begin.length();
         }
@@ -25,6 +26,16 @@ namespace itertools{
             iterator( typename T1::iterator it1begin, typename T2::iterator  it2begin):
             it1_begin(it1begin),it2_begin(it2begin){}
 
+            string operator*(){
+                stringstream str;
+                string s="";
+                str<<*it1_begin;
+                str<<",";
+                str<<*it2_begin;
+                str<<s;
+                return s;
+            }
+            
             iterator operator++() {
                ++it1_begin;
                ++it2_begin;
@@ -52,13 +63,10 @@ namespace itertools{
 
          
         }; // END OF CLASS ITERATOR
-        iterator begin() const{
-            return iterator{z_begin,z_end};
-            //return iterator<decltype(c_begin.begin()),decltype(c_end.begin())>(c_begin.begin(), c_end.begin()); 
-        }
+        iterator begin() const{return iterator{z_begin,z_end};}
         iterator end() const{
             iterator it{z_begin,z_end};
-            for (size_t i = 0; i < z_begin.length()+z_end.length(); i++)
+            for (size_t i = 0; i < z_begin.length() i++)
             {
                 ++it;
             }

@@ -1,10 +1,7 @@
 /**
  * A test program for itertools.
  * 
-<<<<<<< HEAD
-=======
- * 
->>>>>>> 96b765fcd2e3c26830a15c82cfa6ae49328da0d7
+ * @author Many students.
  * @since  2019-05
  */
 
@@ -40,14 +37,11 @@ int main() {
 	int grade=0;
 	int signal = setjmp(badkan::longjmp_buffer);
 	if (signal == 0) {
-<<<<<<< HEAD
-=======
 
 
 
 		/* Tests by Yoav Gross and Elad Nevii:
 		   https://github.com/IMYod/CPP_Iterators */
->>>>>>> 96b765fcd2e3c26830a15c82cfa6ae49328da0d7
 		
 		testcase.setname("YE - Range");
 		testcase.CHECK_EQUAL(iterable_to_string(range(5, 9)),string("5,6,7,8,"));
@@ -89,14 +83,10 @@ int main() {
 		}
 		
 		for (int i : range(0, 0))
-<<<<<<< HEAD
-			testcase.CHECK_EQUAL(1, 0);          
-=======
 			testcase.CHECK_EQUAL(1, 0);
            
      		//testcase.CHECK_EQUAL(iterable_to_string(chain(range(0.5, 2.5), string("876"))),string("0.5,1.5,8,7,"));
           
->>>>>>> 96b765fcd2e3c26830a15c82cfa6ae49328da0d7
 
          //*Chain*/
          testcase.setname("YE - Chain"); 
@@ -738,8 +728,4 @@ for (auto pair: powerset(range(1,2))){
 	}
 	cout << "Your grade is: "  << grade << endl;
 	return 0;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 96b765fcd2e3c26830a15c82cfa6ae49328da0d7

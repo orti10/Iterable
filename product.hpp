@@ -11,7 +11,7 @@ namespace itertools{
 
 	public:
 
-		product(const T1 begins, const T2 ends)
+		product(T1 begins, T2 ends)
 			: pro_begin(begins),pro_end(ends) {}
 		
 		int length () const{
