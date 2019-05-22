@@ -23,35 +23,31 @@ namespace itertools{
 
         class iterator{
             private:
-            T it_it;
-            T it_current;
+            T it;
 
             public:
-            iterator(T iter){
-                it_current=iter;
-                it_it=iter;
-            }
+            iterator(T iter = nullptr): it(iter) {}
             //iterator(const iterator &other):it(other.it){}
 
             T operator*()const{
-                return  it_current;
+                return  it;
             }
             //++i prefix
-            iterator operator++(){
-                ++it_current;
+            iterator& operator++(){
+                it++;
                 return *this;
             }
             //i++ postfix
             const iterator operator ++(int){
-                 iterator temp =*this;
-                *this++;
+                iterator temp =*this;
+                it++;
                 return temp;
             }
             bool operator==(const iterator& other){
-                return it_current==other.it_current;
+                return it==other.it;
             }
             bool operator!=(const iterator& other){
-                return it_current!=other.it_current; 
+                return it!=other.it; 
             }
             
             // T* operator-> ()const{
@@ -70,5 +66,5 @@ namespace itertools{
         }
     };   
         
-};
+}//;
 

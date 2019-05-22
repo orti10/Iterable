@@ -59,10 +59,10 @@ namespace itertools{
 
          
         }; // END OF CLASS ITERATOR
- 		iterator begin() const{
+ 		auto begin() const{
             return iterator{pro_begin,pro_end};
         }
-        iterator end() const{
+        auto end() const{
             iterator it{pro_begin,pro_end};
             for (size_t i = 0; i < pro_begin.length()+pro_end.length(); i++)
             {

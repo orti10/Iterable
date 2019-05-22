@@ -72,10 +72,10 @@ namespace itertools {
          
         }; // END OF CLASS ITERATOR
 
-        iterator begin() const{
+        auto begin() const{
             return iterator{iterable};
         }
-        iterator end() const{
+        auto end() const{
             iterator it{iterable};
             for (size_t i = 0; i < iterable.length(); i++)
             {

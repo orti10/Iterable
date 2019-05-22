@@ -1,6 +1,7 @@
 #pragma once
-// #include <iterator>
-// #include<iostream>
+#include <iterator>
+#include<iostream>
+using namespace std;
 
 namespace itertools{
     template<typename T1,typename T2>
@@ -28,7 +29,7 @@ namespace itertools{
             // }
             
             iterator(typename T1::iterator it1begin,typename T2::iterator it2begin)
-            :it1_begin(it1begin),it2_begin(it2begin){}
+            :it1_begin(it1begin),it2_begin(it2begin),flag(true){}
             //iterator(const iterator &other):it1_begin(other.it1_begin),it1_end(other.it1_end),it2_begin(other.it2_begin){}
             
             auto operator*()const{
@@ -40,7 +41,7 @@ namespace itertools{
                 return *(it2_begin);
             }
             //++i
-            iterator &operator++(){
+            iterator& operator++(){
                 if(flag==true){
                     ++(it1_begin);
                 }
@@ -49,11 +50,11 @@ namespace itertools{
                 return *this;
             }
             //i++
-            const iterator &operator ++(int){
-                iterator temp =*this;
-                ++*this;
-                return temp;
-            }
+            // const iterator &operator ++(int){
+            //     iterator temp =*this;
+            //     ++*this;
+            //     return temp;
+            // }
 
             
             bool operator!=(const iterator& other){
@@ -65,11 +66,11 @@ namespace itertools{
             
         };
 
-        iterator begin() const{
+        auto begin() const{
             return iterator{c_begin,c_end};
             //return iterator<decltype(c_begin.begin()),decltype(c_end.begin())>(c_begin.begin(), c_end.begin()); 
         }
-        iterator end() const{
+        auto end() const{
             iterator it{c_begin,c_end};
             for (size_t i = 0; i < c_begin.length()+c_end.length()+1; i++)
             {

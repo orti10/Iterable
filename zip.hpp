@@ -1,5 +1,6 @@
 #pragma once
 #include <sstream>
+#include "iostream"
 
 namespace itertools{
 
@@ -63,10 +64,10 @@ namespace itertools{
 
          
         }; // END OF CLASS ITERATOR
-        iterator begin() const{return iterator{z_begin,z_end};}
-        iterator end() const{
+        auto begin() const{return iterator{z_begin,z_end};}
+        auto end() const{
             iterator it{z_begin,z_end};
-            for (size_t i = 0; i < z_begin.length() i++)
+            for (size_t i = 0; i < z_begin.length(); i++)
             {
                 ++it;
             }
