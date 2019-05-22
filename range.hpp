@@ -1,16 +1,24 @@
 #pragma once
-
+#include <iostream>
 
 namespace itertools{
+    
     template<typename T>
 
     class range
     {
     private:
-        T r_begin,r_end;
+        T r_begin;
+        T r_end;
     public:
 
-        range(const T begins,const T ends):r_begin(begins),r_end(ends){}
+        range(const T begins,const T ends){
+            r_begin=begins;
+            r_end=ends;
+        }
+        int length () const{
+            return r_end.length()-r_begin.length();
+        }
        // range<T>(const range& ran):r_begin(ran.r_begin),r_end(ran.r_end){}
 
         class iterator{
@@ -18,11 +26,10 @@ namespace itertools{
             T r_it;
 
             public:
-
-            iterator(T iterator):r_it(iterator){}
+            iterator(T iter):r_it(iter){}
             //iterator(const iterator &other):it(other.it){}
 
-            T& operator*(){
+            T operator*()const{
                 return r_it;
             }
             //++i prefix
@@ -33,29 +40,28 @@ namespace itertools{
             //i++ postfix
             const iterator operator ++(int){
                  iterator temp =*this;
-                ++*this;
+                *this++;
                 return temp;
             }
-            bool operator==(const iterator& other)const{
-                return r_it==other.r_it; 
-            }
-            bool operator!=(const iterator& other)const{
+            bool operator!=(const iterator& other){
                 return r_it!=other.r_it; 
             }
+            
             T* operator-> ()const{
                 return &(r_it);
             }
          //   friend ostream& operator<<(ostream& os,const iterator& it);
 
-        };
-
-        iterator begin(){
-         return iterator(r_begin);
+        };//end of iterator class
+       
+        public:
+        iterator begin()const{
+         return iterator{r_begin};
         }
-        iterator end(){
-            return iterator(r_end);
+        iterator end()const{
+            return iterator{r_end};
         }
     };   
         
-}
+};
 
