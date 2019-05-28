@@ -1,5 +1,4 @@
 #pragma once
-#include <iterator>
 #include<iostream>
 using namespace std;
 
@@ -8,78 +7,42 @@ namespace itertools{
 
     class chain{
         private:
-        T1 c_begin;
-        T2 c_end;
+        T1 t1;
+        T2 t2;
         
         public:
-        chain(T1 begins,T2 ends):c_begin(begins),c_end(ends){}
+        chain(const T1& begins,const T2& ends):t1(begins),t2(ends){ }
         
-        int length () const{
-            return c_begin.length()+ c_end.length();
-        }
-        class iterator{
-            
-            public:
-            typename T1::iterator it1_begin;
-            typename T2::iterator it2_begin;
-            bool flag=true;
-            // bool checkIndicator(){
-            //     if(it1_begin==it1_end) return true;
-            //     return false;
-            // }
-            
-            iterator(typename T1::iterator it1begin,typename T2::iterator it2begin)
-            :it1_begin(it1begin),it2_begin(it2begin),flag(true){}
-            //iterator(const iterator &other):it1_begin(other.it1_begin),it1_end(other.it1_end),it2_begin(other.it2_begin){}
-            
-            auto operator*()const{
-                
-                if(flag==true){
-                    return *(it1_begin);
-                }
-                else
-                return *(it2_begin);
-            }
-            //++i
-            iterator& operator++(){
-                if(flag==true){
-                    ++(it1_begin);
-                }
-                else
-                    ++(it1_begin);
-                return *this;
-            }
-            //i++
-            // const iterator &operator ++(int){
-            //     iterator temp =*this;
-            //     ++*this;
-            //     return temp;
-            // }
+        class iterator {
+            public: 
+                decltype(t1.begin()) t1Begin;
+                decltype(t1.end()) t1End;
+                decltype(t2.begin()) t2Begin;
+                decltype(t2.end()) t2End;
 
-            
-            bool operator!=(const iterator& other){
-                if(flag==true &&  !(it1_begin!=other.it1_begin)) flag=false;
-                if(flag==true) return  it1_begin != other.it1_begin;
-                else
-                return  it2_begin != other. it2_begin;
-            }
-            
+                iterator(T1& a, T2& b) : t1Begin(a.begin()), t1End(a.end()), t2Begin(b.begin()), t2End(b.end()) { }
+
+                iterator(T1& a, T2& b, bool isEnd) : t1Begin(a.end()), t1End(a.end()), t2Begin(b.end()), t2End(b.end()) { }
+
+                auto operator*() {
+                    if (t1Begin != t1End) { return *t1Begin; }
+                    return *t2Begin;
+                }
+
+                iterator& operator++() {
+                    if(t1Begin != t1End) { ++t1Begin; }
+                    else { ++t2Begin; }
+                    return *this;
+                }
+
+                bool operator!=(const iterator& it) {
+                    if (t1Begin != it.t1Begin || t2Begin != it.t2Begin) { return true; }
+                    return false;
+                }
         };
 
-        auto begin() const{
-            return iterator{c_begin,c_end};
-            //return iterator<decltype(c_begin.begin()),decltype(c_end.begin())>(c_begin.begin(), c_end.begin()); 
-        }
-        auto end() const{
-            iterator it{c_begin,c_end};
-            for (size_t i = 0; i < c_begin.length()+c_end.length()+1; i++)
-            {
-                ++it;
-            }
-            return it;
-            //return iterator<decltype(c_begin.end()),decltype(c_end.end())>(c_begin.end(), c_end.end()); 
-            
-        } 
+        auto begin() { return iterator(t1, t2); }
+        auto end() { return iterator(t1, t2, true); }
     };
-};
+}
 
