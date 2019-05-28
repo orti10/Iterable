@@ -14,72 +14,62 @@ namespace itertools{
 		product(T1 begins, T2 ends)
 			: pro_begin(begins),pro_end(ends) {}
 		
-		int length () const{
-            return pro_begin.length()* pro_end.length();
-        }
-		class iterator {
+		
+		class const_iterator {
 
 			private:
-			typename T1::iterator it1_begin;
-            typename T2::iterator it2_begin;
-			typename T2::iterator FLAG;
+            typename T1::const_iterator it1_begin;
+            typename T1::const_iterator it1_end;
+            typename T2::const_iterator it2_begin;
+            typename T2::const_iterator it2_end;
+
+			typename T2::const_iterator it2_start;
 
 			public:
-				iterator(typename T1::iterator it1begin,typename T2::iterator it2begin):
-					it1_begin(it1begin),it2_begin(it2begin),FLAG(it2_begin){}
-
-			iterator operator++() {
-               ++it1_begin;
-               ++it2_begin;
+				const_iterator(const typename T1::const_iterator& it1begin, const typename T1::const_iterator& it1end,
+            const typename T2::const_iterator&  it2begin, const typename T2::const_iterator& it2end):
+            it1_begin(it1begin), it1_end(it1end),it2_start(it2begin), it2_begin(it2begin), it2_end(it2end) {}
+            
+			const_iterator& operator++() {
+                ++it2_begin;
+                if(it2_begin == it2_end){
+                    ++it1_begin;
+                    if(it1_begin != it1_end){
+                        it2_begin = it2_start;
+                    }
+                }
                return *this;
  
             }
 
-            std::pair<decltype(*it1_begin),decltype(*it2_begin)> operator*() const {
-
-             return  std::pair<decltype(*it1_begin),decltype(*it2_begin)> (*it1_begin , *it2_begin);
+            auto operator*() const {
+                return  std::pair(*it1_begin , *it2_begin);
             }
 
-            bool operator!=(iterator other){
-                if((it1_begin != other.it1_begin) && (it2_begin != other.it2_begin)){
-                    it2_begin = FLAG;
-                    ++it1_begin;
-                }
-                return (it1_begin != other.it1_begin);
+            bool operator==(const_iterator other){
+                // if((it1_begin == it1_end || it2_start == it2_end) && (other.it1_begin == other.it1_end || other.it2_start == other.it2_end)) {
+                //     return true;
+                // }
+
+                return !(*this != other);
  
             }
-		//  bool operator==(iterator other){
-        //         return **this==other;
- 
-        //     }
-        //     bool operator!=(iterator other){
-        //         return !(*this==other);
- 
-        //     }
 
-         
+            bool operator!=(const_iterator other) {
+               return (it1_begin != other.it1_begin) && (it2_begin != other.it2_begin);
+ 
+            }
+
         }; // END OF CLASS ITERATOR
  		auto begin() const{
-            return iterator{pro_begin,pro_end};
+            return const_iterator(pro_begin.begin(), pro_begin.end() ,pro_end.begin(), pro_end.end());
         }
         auto end() const{
-            iterator it{pro_begin,pro_end};
-            for (size_t i = 0; i < pro_begin.length()+pro_end.length(); i++)
-            {
-                ++it;
-            }
-            return it;
+            return const_iterator(pro_begin.end(), pro_begin.end() ,pro_end.end(), pro_end.end());
             
            } //return it
-
+    
 
     };
-};
-
-// 				auto operator*() {
-// 					return std::pair(*(it1_begin), *(it2_begin));
-// 				}
-//                 auto operator-> ()const{
-//                 return std::pair(&(it1_begin),&(it2_begin));
-//                 }
+}
 

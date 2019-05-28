@@ -13,82 +13,68 @@ namespace itertools {
     
     private: 
         T iterable; // start point
+        uint sizeOfSet;
 
     public:
-    powerset(T start) : iterable(start) {} 
-
- 
-    template <class C>
-        class iterator {
+    powerset(T start) : iterable(start) {
+        sizeOfSet = 0;
+        for(auto i : start) {
+            ++sizeOfSet;
+        }
+    } 
+        class const_iterator {
 
         private:
-            C iter_begin; // iterator A
-            C iter_end; // iterator A
-            unsigned   index;
-            unsigned   count_elements;
+        const T& fullSet;
+        uint size;
 
 
         public:
-            iterator(C itA , C itB): iter_begin(itA), iter_end(itB) , index(0),count_elements(0)  {
+            const_iterator(const T& a, uint ind): 
+            fullSet(a) , size(ind) {}
 
-            C _element_iterator = iter_begin;
-            while (_element_iterator != iter_end)
-            {
-                ++count_elements;
-                ++_element_iterator;
+            auto operator*() const {
+                std::set<typename std::remove_reference<typename std::remove_const<decltype(*(iterable.begin()))>::type>::type> ms = {};
+                int i = 1;
+                for (auto element : fullSet) {
+                    if (i & size) {
+                        cout<<"ASDASDA: "<<element<< "      ";
+                        ms.insert(element);
+                        i = i << 1;
+                    }
+                }
+                return ms;
             }
 
-            count_elements = std::pow(2, count_elements);
+            const_iterator& operator++() {
+                ++size;
+                return *this;
             }
 
-           iterator<C>& operator++() {
-               ++index;
-               return *this;
+            const const_iterator& operator++(int) {
+                const_iterator temp = *this;
+                ++size;
+                return temp;
             }
 
-            set<decltype(*iter_begin)> operator*() const         {
-            C _element_iterator = iter_begin;
-            std::set<decltype(*iter_begin)> S;
-            unsigned int i = index;
-            while (i != 0 && _element_iterator != iter_end)
-            { 
-                unsigned int r = i % 2;
-                i = i >> 1; 
-
-                if (r == 1)
-                    S.insert(*_element_iterator);
-
-                ++_element_iterator;
+            bool operator!=(const const_iterator& other) {
+                return !(size == other.size);
             }
 
-            return S;
-        }
-
-        bool operator!=(iterator<C> const &it) const {
-            return ((count_elements - index) != (it.count_elements - it.index - 1));
-
-            }
- 
-         
         }; // END OF CLASS ITERATOR
 
         auto begin() const{
-            return iterator{iterable};
+            return const_iterator(iterable, 0);
         }
         auto end() const{
-            iterator it{iterable};
-            for (size_t i = 0; i < iterable.length(); i++)
-            {
-                ++it;
-            }
-            return it;
-            
-           } //return it
+            return const_iterator(iterable, sizeOfSet);
+            } //return it
     };
     
 template <typename D>
 std::ostream &operator<<(std::ostream &os, const std::set<D> &S)
 {
+
     os << "{";
 
     auto it = S.begin();
