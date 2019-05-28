@@ -26,7 +26,7 @@ namespace itertools {
 
         private:
         const T& fullSet;
-        uint size;
+        int size;
 
 
         public:
@@ -38,10 +38,10 @@ namespace itertools {
                 int i = 1;
                 for (auto element : fullSet) {
                     if (i & size) {
-                        cout<<"ASDASDA: "<<element<< "      ";
+                        // cout<<"ASD: "<<element<< "      ";
                         ms.insert(element);
-                        i = i << 1;
                     }
+                        i = i << 1;
                 }
                 return ms;
             }
@@ -67,7 +67,7 @@ namespace itertools {
             return const_iterator(iterable, 0);
         }
         auto end() const{
-            return const_iterator(iterable, sizeOfSet);
+            return const_iterator(iterable, pow(2, sizeOfSet));
             } //return it
     };
     
