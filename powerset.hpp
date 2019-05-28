@@ -22,23 +22,23 @@ namespace itertools {
             ++sizeOfSet;
         }
     } 
+
         class const_iterator {
 
         private:
-        const T& fullSet;
+        const T& power_set;
         int size;
 
 
         public:
             const_iterator(const T& a, uint ind): 
-            fullSet(a) , size(ind) {}
+            power_set(a) , size(ind) {}
 
             auto operator*() const {
                 std::set<typename std::remove_reference<typename std::remove_const<decltype(*(iterable.begin()))>::type>::type> ms = {};
                 int i = 1;
-                for (auto element : fullSet) {
+                for (auto element : power_set) {
                     if (i & size) {
-                        // cout<<"ASD: "<<element<< "      ";
                         ms.insert(element);
                     }
                         i = i << 1;
@@ -72,19 +72,19 @@ namespace itertools {
     };
     
 template <typename D>
-std::ostream &operator<<(std::ostream &os, const std::set<D> &S)
+std::ostream &operator<<(std::ostream &os, const std::set<D> &s)
 {
 
     os << "{";
 
-    auto it = S.begin();
-    if(it != S.end())
+    auto it = s.begin();
+    if(it != s.end())
     { // first element is without comma seperator.
         os << *it; 
         ++it;
     }
 
-    while (it != S.end())
+    while (it != s.end())
     {
         os << ',' << *it;
         ++it;
