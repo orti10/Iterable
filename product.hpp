@@ -42,7 +42,7 @@ namespace itertools{
  
             }
 
-            auto operator*() const {
+            const auto operator*() {
                 return  std::pair(*it1_begin , *it2_begin);
             }
 

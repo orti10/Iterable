@@ -162,8 +162,8 @@ int main() {
 	testcase.CHECK_EQUAL(iterable_to_string(zip(zip(range('T','W'), string("eds")),zip(range(1,4), string("3.1")))),
 		string("T,e,1,3,U,d,2,.,V,s,3,1,"));
 
-	// testcase.CHECK_EQUAL(iterable_to_string(zip(chain(range(-1,1), range(50,52)),zip(range('A','E'), string("////")))),
-	// 	string("-1,A,/,0,B,/,50,C,/,51,D,/,"));
+	testcase.CHECK_EQUAL(iterable_to_string(zip(chain(range(-1,1), range(50,52)),zip(range('A','E'), string("////")))),
+		string("-1,A,/,0,B,/,50,C,/,51,D,/,"));
 
 	
 	//*prduct*/

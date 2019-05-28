@@ -26,14 +26,14 @@ namespace itertools{
             const typename T2::const_iterator&  it2begin, const typename T2::const_iterator& it2end):
             it1_begin(it1begin), it1_end(it1end), it2_begin(it2begin), it2_end(it2end) {}
             
-            const_iterator operator++() {
+            const_iterator& operator++() {
                ++it1_begin;
                ++it2_begin;
                return *this;
             }
 
 
-            auto operator*() const {
+            const auto operator*() {
                 return  std::pair(*it1_begin , *it2_begin);
             }
             bool operator!=(const_iterator other){
